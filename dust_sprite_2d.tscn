@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://dsarjxueckydu"]
+
+[ext_resource type="Texture2D" uid="uid://cf5ny1gvuulp4" path="res://assets/dust/Dust Sprite Sheet.png" id="1_w5jsg"]
+[ext_resource type="Script" path="res://dust_sprite_2d.gd" id="2_wqgsg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gbmj"]
+atlas = ExtResource("1_w5jsg")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prua3"]
+atlas = ExtResource("1_w5jsg")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6kgd"]
+atlas = ExtResource("1_w5jsg")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvkgl"]
+atlas = ExtResource("1_w5jsg")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jnrr"]
+atlas = ExtResource("1_w5jsg")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6m00c"]
+atlas = ExtResource("1_w5jsg")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f0xg"]
+atlas = ExtResource("1_w5jsg")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u40ty"]
+atlas = ExtResource("1_w5jsg")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd55b"]
+atlas = ExtResource("1_w5jsg")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7toki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gbmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prua3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6kgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvkgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jnrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6m00c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f0xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u40ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sd55b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="DustSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_7toki")
+frame_progress = 0.596085
+script = ExtResource("2_wqgsg")

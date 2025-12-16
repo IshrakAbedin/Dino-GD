@@ -1,0 +1,100 @@
+[gd_scene load_steps=16 format=3 uid="uid://ds2mxi5qixdk2"]
+
+[ext_resource type="Texture2D" uid="uid://22wiviuunb6v" path="res://assets/raptor/raptor-jump.png" id="1_jchs7"]
+[ext_resource type="Texture2D" uid="uid://bmfsg14r277dv" path="res://assets/raptor/raptor-run.png" id="1_psa54"]
+[ext_resource type="Texture2D" uid="uid://cnfth501ncx7p" path="res://assets/raptor/raptor-pounce.png" id="2_ipqbi"]
+[ext_resource type="Texture2D" uid="uid://pnl5rvkam40k" path="res://assets/raptor/raptor-pounce-end.png" id="2_ttyw8"]
+[ext_resource type="Script" path="res://raptor_sprite_2d.gd" id="5_h6wt1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0yr7"]
+atlas = ExtResource("1_jchs7")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8h01"]
+atlas = ExtResource("2_ttyw8")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpmig"]
+atlas = ExtResource("2_ipqbi")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jk2g7"]
+atlas = ExtResource("1_psa54")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q582"]
+atlas = ExtResource("1_psa54")
+region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xodxr"]
+atlas = ExtResource("1_psa54")
+region = Rect2(512, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m485t"]
+atlas = ExtResource("1_psa54")
+region = Rect2(768, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmp81"]
+atlas = ExtResource("1_psa54")
+region = Rect2(1024, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs68t"]
+atlas = ExtResource("1_psa54")
+region = Rect2(1280, 0, 256, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kjfak"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_d0yr7")
+}],
+"loop": false,
+"name": &"jump_begin",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_w8h01")
+}],
+"loop": false,
+"name": &"jump_end",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpmig")
+}],
+"loop": true,
+"name": &"jump_loop",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk2g7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q582")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xodxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m485t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmp81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs68t")
+}],
+"loop": true,
+"name": &"run",
+"speed": 13.0
+}]
+
+[node name="RaptorSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_kjfak")
+animation = &"jump_end"
+script = ExtResource("5_h6wt1")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

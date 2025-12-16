@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://br7usyea07vao"]
+
+[ext_resource type="Script" path="res://mob_spawner.gd" id="1_fgjdg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4uu4r"]
+
+[node name="MobSpawner" type="Marker2D"]
+script = ExtResource("1_fgjdg")
+
+[node name="SpawnAreaCactus" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0.313726, 0.482353, 0.517647)
+position = Vector2(0, -20)
+scale = Vector2(10, 40)
+texture = SubResource("CanvasTexture_4uu4r")
+
+[node name="SpawnBird" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.790715, 0.550245, 0, 0.517647)
+position = Vector2(0, -75)
+scale = Vector2(10, 11)
+texture = SubResource("CanvasTexture_4uu4r")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

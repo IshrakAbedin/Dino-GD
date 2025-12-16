@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bidopw046db6v"]
+
+[ext_resource type="PackedScene" uid="uid://ds2mxi5qixdk2" path="res://raptor_sprite_2d.tscn" id="1_71msb"]
+[ext_resource type="Script" path="res://raptor.gd" id="1_i54cc"]
+[ext_resource type="PackedScene" uid="uid://dsarjxueckydu" path="res://dust_sprite_2d.tscn" id="2_ltkd3"]
+[ext_resource type="AudioStream" uid="uid://djumqnd5mi38f" path="res://assets/sfx/jump.wav" id="4_qjju8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vdscp"]
+radius = 15.0
+height = 48.0
+
+[node name="Raptor" type="CharacterBody2D"]
+script = ExtResource("1_i54cc")
+
+[node name="DustSprite2D" parent="." instance=ExtResource("2_ltkd3")]
+unique_name_in_owner = true
+position = Vector2(-35, -50)
+scale = Vector2(3.0625, 3.0625)
+frame_progress = 0.685003
+
+[node name="RaptorSprite2D" parent="." instance=ExtResource("1_71msb")]
+unique_name_in_owner = true
+position = Vector2(0, -64)
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
+shape = SubResource("CapsuleShape2D_vdscp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(215, -169)
+zoom = Vector2(1.5, 1.5)
+
+[node name="JumpAudioStream" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_qjju8")
+
+[connection signal="on_animation_end" from="RaptorSprite2D" to="." method="_on_raptor_sprite_2d_on_animation_end"]

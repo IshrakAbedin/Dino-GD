@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://be1nm000ljqv1"]
+
+[ext_resource type="Texture2D" uid="uid://b620ohk5tu5nw" path="res://assets/tiny_dino/TinyDinoSheet.png" id="1_6pgdx"]
+[ext_resource type="Script" path="res://flying_dino.gd" id="1_ruxje"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7eyl"]
+atlas = ExtResource("1_6pgdx")
+region = Rect2(0, 48, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8w2m"]
+atlas = ExtResource("1_6pgdx")
+region = Rect2(64, 48, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0trl"]
+atlas = ExtResource("1_6pgdx")
+region = Rect2(128, 48, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yi82i"]
+atlas = ExtResource("1_6pgdx")
+region = Rect2(0, 64, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd7bl"]
+atlas = ExtResource("1_6pgdx")
+region = Rect2(64, 64, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54jbn"]
+atlas = ExtResource("1_6pgdx")
+region = Rect2(128, 64, 64, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5oq0c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7eyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8w2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0trl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yi82i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd7bl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54jbn")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yh7et"]
+radius = 21.0238
+
+[node name="FlyingDino" type="Area2D"]
+top_level = true
+script = ExtResource("1_ruxje")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -21)
+scale = Vector2(-2.67044, 2.67044)
+sprite_frames = SubResource("SpriteFrames_5oq0c")
+animation = &"fly"
+frame_progress = 0.0454459
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -21)
+shape = SubResource("CircleShape2D_yh7et")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://k24p4kys8y3q"]
+
+[ext_resource type="Script" path="res://ground.gd" id="1_l845c"]
+[ext_resource type="Shader" path="res://shaders/panner_rotator_waver.gdshader" id="2_kejok"]
+[ext_resource type="Texture2D" uid="uid://dx6ij2bk1umcb" path="res://assets/ground/ground_texture_c.png" id="3_ia1jm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohsrs"]
+size = Vector2(10949, 243)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wws76"]
+shader = ExtResource("2_kejok")
+shader_parameter/ctime = 0.0
+shader_parameter/pan = true
+shader_parameter/direction = Vector2(1, 0)
+shader_parameter/speed_scale = 0.4
+shader_parameter/speed_scale_gain = 0.005
+shader_parameter/rotate = false
+shader_parameter/clockwise = false
+shader_parameter/origin = Vector2(0.5, 0.5)
+shader_parameter/rotation_rate = 1.57075
+shader_parameter/wave = false
+shader_parameter/wave_amount = Vector2(0.1, 0)
+shader_parameter/wave_speed = 0.5
+
+[node name="Ground" type="StaticBody2D"]
+position = Vector2(90, 364)
+script = ExtResource("1_l845c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(680.5, 122.5)
+shape = SubResource("RectangleShape2D_ohsrs")
+
+[node name="GroundTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.709804, 0.537255, 0.192157, 1)
+self_modulate = Color(0.709804, 0.537255, 0.192157, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_wws76")
+offset_left = -122.0
+offset_top = -3.0
+offset_right = 549.0
+offset_bottom = 253.0
+texture = ExtResource("3_ia1jm")
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://cckjlnsgerk1b"]
+
+[ext_resource type="Script" uid="uid://c43yf12epr445" path="res://game.gd" id="1_bfw77"]
+[ext_resource type="PackedScene" uid="uid://bidopw046db6v" path="res://raptor.tscn" id="1_j1gex"]
+[ext_resource type="PackedScene" uid="uid://c3idsj77kmk8h" path="res://auto_scroller.tscn" id="2_wb408"]
+[ext_resource type="PackedScene" uid="uid://k24p4kys8y3q" path="res://ground.tscn" id="3_qc17m"]
+[ext_resource type="PackedScene" uid="uid://br7usyea07vao" path="res://mob_spawner.tscn" id="3_tefa7"]
+[ext_resource type="PackedScene" uid="uid://dpcx1h8k5q6el" path="res://score_board.tscn" id="4_k5nst"]
+[ext_resource type="PackedScene" uid="uid://nr3bk8l5u7mf" path="res://sky.tscn" id="6_hvwia"]
+[ext_resource type="AudioStream" uid="uid://g7dqn70noh5c" path="res://assets/bgm/good-night-lofi-cozy-chill-music.mp3" id="8_v57o0"]
+[ext_resource type="PackedScene" uid="uid://dvdxhhi318b6e" path="res://audio_credits.tscn" id="9_5v0am"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_bfw77")
+
+[node name="AutoScroller" parent="." instance=ExtResource("2_wb408")]
+position = Vector2(-29, -81)
+scale = Vector2(2.08763, 2.08763)
+
+[node name="Ground" parent="." instance=ExtResource("3_qc17m")]
+
+[node name="Raptor" parent="." instance=ExtResource("1_j1gex")]
+unique_name_in_owner = true
+position = Vector2(90, 364)
+
+[node name="MobSpawner" parent="." instance=ExtResource("3_tefa7")]
+position = Vector2(1794, 364)
+width = 350.0
+
+[node name="Sky" parent="." instance=ExtResource("6_hvwia")]
+position = Vector2(-184, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("4_k5nst")]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+grow_vertical = 1
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_v57o0")
+volume_db = -8.5
+autoplay = true
+parameters/looping = true
+
+[node name="AudioCredits" parent="." instance=ExtResource("9_5v0am")]
+
+[connection signal="score_updated" from="Raptor" to="." method="_on_raptor_score_updated"]
